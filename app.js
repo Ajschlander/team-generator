@@ -5,6 +5,32 @@ const fs          = require("fs"),
       Intern      = require("./lib/intern.js"),
       team        = [];
 
+let htmlTemplate = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Team Generator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="header">
+        <h1>My Team</h1>
+    </div>
+
+    <div class="card-container">
+        
+`
+
+const endHTML = `
+</body>
+</html>
+`
+
 const addManager = () => {
     inquirer
         .prompt([
@@ -111,6 +137,62 @@ const addIntern = () => {
         });
 }
 
+const generateHTML = async () => {
+    team.forEach(member => {
+        if(member.role === "Manager"){
+            const newCard = `
+            <div class="card">
+                <div class="top">
+                    <h1>${ member.name }</h1>
+                    <h2>${ member.role }</h2>
+                </div>
+                <div class="info-container">
+                    <p class="info">ID: ${ member.id }</p> 
+                    <p class="info">Email: ${ member.email }</p>
+                    <p class="info">ID: ${ member.officeNumber }</p>       
+                </div>
+                </div>`
+                htmlTemplate += newCard;
+        }else if(member.role === "Engineer"){
+            const newCard = `
+            <div class="card">
+                <div class="top">
+                    <h1>${ member.name }</h1>
+                    <h2>${ member.role }</h2>
+                </div>
+                <div class="info-container">
+                    <p class="info">ID: ${ member.id }</p> 
+                    <p class="info">Email: ${ member.email }</p>
+                    <p class="info">ID: ${ member.githubName }</p>       
+                </div>
+                </div>`
+            htmlTemplate += newCard;
+        }
+        else {
+            const newCard = `
+            <div class="card">
+                <div class="top">
+                    <h1>${ member.name }</h1>
+                    <h2>${ member.role }</h2>
+                </div>
+                <div class="info-container">
+                    <p class="info">ID: ${ member.id }</p> 
+                    <p class="info">Email: ${ member.email }</p>
+                    <p class="info">ID: ${ member.school }</p>       
+                </div>
+                </div>`
+            htmlTemplate += newCard;
+        }
+    });
+    
+    htmlTemplate += endHTML;
+
+    fs.writeFile("output/index.html", htmlTemplate, err => {
+        if(err) throw err;
+        console.log("Done!");
+    })
+}
+
 const confirmAddMember = () => {
     inquirer
         .prompt([
@@ -127,6 +209,7 @@ const confirmAddMember = () => {
             else{
                 // done
                 console.log(team);
+                generateHTML();
             }
         });
 }
