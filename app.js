@@ -14,6 +14,7 @@ let htmlTemplate = `
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Team Generator</title>
 
+    <link href = "https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
