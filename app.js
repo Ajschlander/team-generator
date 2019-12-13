@@ -149,7 +149,7 @@ const generateHTML = async () => {
                 <div class="info-container">
                     <p class="info">ID: ${ member.id }</p> 
                     <p class="info">Email: ${ member.email }</p>
-                    <p class="info">ID: ${ member.officeNumber }</p>       
+                    <p class="info">Office Number: ${ member.officeNumber }</p>       
                 </div>
                 </div>`
                 htmlTemplate += newCard;
@@ -163,7 +163,7 @@ const generateHTML = async () => {
                 <div class="info-container">
                     <p class="info">ID: ${ member.id }</p> 
                     <p class="info">Email: ${ member.email }</p>
-                    <p class="info">ID: ${ member.githubName }</p>       
+                    <p class="info">Github Name: ${ member.githubName }</p>       
                 </div>
                 </div>`
             htmlTemplate += newCard;
@@ -178,7 +178,7 @@ const generateHTML = async () => {
                 <div class="info-container">
                     <p class="info">ID: ${ member.id }</p> 
                     <p class="info">Email: ${ member.email }</p>
-                    <p class="info">ID: ${ member.school }</p>       
+                    <p class="info">School: ${ member.school }</p>       
                 </div>
                 </div>`
             htmlTemplate += newCard;
